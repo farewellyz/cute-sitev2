@@ -46,7 +46,11 @@
 <body>
   <div id="container">
     <h1>เค้ามีอะไรมาบอกค่ะ 💕</h1>
-    <img id="mainImage" src="image1.jpg" alt="รูปน่ารัก" onclick="changeImage()">
+    <!-- ✅ เพิ่มแท็กเสียง -->
+    <audio id="bgMusic" src="music.mp3"></audio>
+
+    <!-- ✅ เปลี่ยนชื่อฟังก์ชัน onclick -->
+    <img id="mainImage" src="image1.jpg" alt="รูปน่ารัก" onclick="changeImageAndPlaySound()">
   </div>
 
   <script>
@@ -54,15 +58,22 @@
       'image1.jpg',
       'image2.jpg',
       'image3.jpg',
-      'image4.jpg',
-      // เพิ่มได้เรื่อยๆ เช่น 'image6.jpg', 'image7.jpg', ...
+      'image4.jpg'
     ];
 
     let currentIndex = 0;
 
-    function changeImage() {
+    // ✅ ฟังก์ชันใหม่: เปลี่ยนรูป + เล่นเสียง
+    function changeImageAndPlaySound() {
+      // เปลี่ยนภาพ
       currentIndex = (currentIndex + 1) % images.length;
       document.getElementById("mainImage").src = images[currentIndex];
+
+      // เล่นเสียง
+      const music = document.getElementById("bgMusic");
+      music.play().catch(e => {
+        console.log("ไม่สามารถเล่นเสียงได้:", e);
+      });
     }
   </script>
 </body>
